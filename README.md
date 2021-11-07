@@ -1,7 +1,7 @@
 # flutter_google_map
 
 - Core location
-- -Google maps
+- Google maps
 
 <img src="screenshots/SC1.png" width="320" height="640">
 
