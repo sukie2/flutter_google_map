@@ -40,6 +40,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    int _index = 0;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -66,6 +67,33 @@ class _MyAppState extends State<MyApp> {
                 },
               ),
             ),
+            Align(
+              alignment: FractionalOffset.bottomCenter,
+              child: SizedBox(
+                height: 200, // card height
+                child: PageView.builder(
+                  itemCount: 10,
+                  controller: PageController(viewportFraction: 0.8),
+                  onPageChanged: (int index) => setState(() => _index = index),
+                  itemBuilder: (_, i) {
+                    return Transform.scale(
+                      scale: i == _index ? 1 : .97,
+                      child: Card(
+                        elevation: 6,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12)),
+                        child: Center(
+                          child: Text(
+                            "Branch ${i + 1}",
+                            style: TextStyle(fontSize: 32),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -75,6 +103,8 @@ class _MyAppState extends State<MyApp> {
   //Call this to set the selected position from the horizontal list of cards
   _setSelectedPosition(LocationData selectedPosition) {
     _selectedPosition = LatLng(selectedPosition.lat, selectedPosition.lon);
+    // _mapController.updateCameraLocation(_currentPos,
+    //     LatLng(_selectedPosition.latitude, _selectedPosition.longitude));
   }
 
   //Trigger GPS and find users location

@@ -43,7 +43,7 @@ class MapController {
       bounds = LatLngBounds(southwest: source, northeast: destination);
     }
 
-    CameraUpdate cameraUpdate = CameraUpdate.newLatLngBounds(bounds, 180);
+    CameraUpdate cameraUpdate = CameraUpdate.newLatLngBounds(bounds, 70);
 
     return checkCameraLocation(cameraUpdate);
   }
